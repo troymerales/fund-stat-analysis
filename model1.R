@@ -35,6 +35,9 @@ btm <- data$"Boook to Market"
 mom <- data$"Momentum (Y2025 return)"
 market_cap <- data$"Market Cap"
 fund_age <- as.numeric(gsub(" years", "", data$"Fund Age (Years)"))
+actual <- data$"Actual (1-YR)"
+predicted <- data$"Predicted"
+DAP <- actual - predicted
 
-model1 <- lm(freturn_2025 ~ investment_style + fsize_2025 + fsize_2026 + er + fr_load + flow_vol + btm + mom + fund_age)
+model1 <- lm(freturn_2025 ~ investment_style + DAP + er + fr_load + fund_flow + flow_vol + btm + mom + fund_age)
 summary(model1)

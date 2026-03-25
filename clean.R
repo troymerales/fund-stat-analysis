@@ -60,7 +60,8 @@ data$freturn_2025 <- data$`Fund Return (2025)`
 data$fsize_2025 <- data$`Fund Size 2025`
 data$fsize_2026 <- data$`Fund Size 2026`
 
-data$er <- data$`Expense Ratio (%)`
+data$er <- as.numeric(data$`Expense Ratio (%)`)
+data$er[is.na(data$er)] <- 0
 data$fund_flow <- data$`Fund Flow`
 data$flow_vol <- data$`Flow Volatility (annualized)`
 data$btm <- data$`Boook to Market`
@@ -78,6 +79,10 @@ data$DAP <- data$actual - data$predicted
 # ==========================================
 # DESCRIPTIVE STATISTICS
 # ==========================================
+format(
+  describe(data[, sapply(data, is.numeric)])[, c("min","max")],
+  scientific = FALSE,
+  nsmall = 6
+)
 
-#describe(data[, sapply(data, is.numeric)])[, c("mean","sd","min","max")]
 summary(data)

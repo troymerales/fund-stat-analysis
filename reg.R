@@ -1,5 +1,3 @@
-
-
 model1 <- lm(
   freturn_2025 ~ investment_style + DAP + er + fr_load + fund_flow + flow_vol + btm + mom + fund_age,
   data = data
